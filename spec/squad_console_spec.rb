@@ -73,12 +73,12 @@ describe SquadConsole do
         rover_1 = squad.first
         rover_1.x.should eq 1
         rover_1.y.should eq 2
-        rover_1.direction.should eq 'N'
+        rover_1.direction_letter.should eq 'N'
 
         rover_2 = squad.last
         rover_2.x.should eq 3
         rover_2.y.should eq 3
-        rover_2.direction.should eq 'E'
+        rover_2.direction_letter.should eq 'E'
       end
 
       it "should move the rovers and update their position" do
@@ -90,12 +90,12 @@ describe SquadConsole do
         rover_1 = squad.first
         rover_1.x.should eq 1
         rover_1.y.should eq 3
-        rover_1.direction.should eq 'N'
+        rover_1.direction_letter.should eq 'N'
 
         rover_2 = squad.last
-        rover_2.x.should eq 3
-        rover_2.y.should eq 3
-        rover_2.direction.should eq 'E'
+        rover_2.x.should eq 5
+        rover_2.y.should eq 1
+        rover_2.direction_letter.should eq 'E'
       end
 
       context "where the squad in the plateau" do

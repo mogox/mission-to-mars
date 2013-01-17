@@ -5,9 +5,12 @@ class SquadConsole
     @input = input_source
   end
 
+  def setup_plateau
+    @plateau = Plateau.new @input.read
+  end
+
   def explore_mars
-    plateau_data = @input.read
-    @plateau = Plateau.new plateau_data
+    setup_plateau
     rover_position = @input.read
     while rover_position.length > 0 do
       rover = Rover.new(rover_position)
