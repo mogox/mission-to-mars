@@ -26,7 +26,6 @@ describe Plateau do
   end
 
   describe "#move_rovers" do
-
     let(:rover_attr_1) do
       [].tap do |arr|
         arr << '1 2 N'
@@ -48,9 +47,6 @@ describe Plateau do
       rover.should_receive(:follow_instructions).twice
       plateau.squad << rover << rover
       plateau.move_rovers
-
     end
   end
-
-
 end

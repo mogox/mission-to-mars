@@ -7,12 +7,12 @@ class Rover
 
   attr_accessor :instructions, :direction, :x, :y
 
-  def initialize(position)
+  def initialize(position, instructions = nil)
     attributes = position.split
     @x = attributes[0].to_i
     @y = attributes[1].to_i
     set_direction_by_letter attributes[2]
-
+    self.instructions = instructions
   end
 
   def follow_instructions

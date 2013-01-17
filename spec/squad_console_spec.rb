@@ -1,10 +1,13 @@
 require 'spec_helper'
 
+# Class for mocking the input from STDIN
 class SquadConsoleInput
   attr_accessor :input_text
 
   def initialize(text)
-    @input_text = text || []
+    # since we're going to use pop to retreive
+    # each line we need it in reverse order
+    @input_text = text.reverse || []
   end
 
   def read
@@ -19,7 +22,6 @@ end
 
 describe SquadConsole do
   describe "explore_mars" do
-
     let(:plateau_size){ '5 5' }
     let(:input_data) do
       [].tap do |arr|
@@ -31,7 +33,7 @@ describe SquadConsole do
       @input = SquadConsoleInput.new input_data
     end
 
-    context "Creates a plateau" do
+    describe "#setup_plateau" do
       it "should create a plateau with the first input" do
         squadConsole = SquadConsole.new @input
         Plateau.should_receive(:new).with(plateau_size)
@@ -39,7 +41,7 @@ describe SquadConsole do
       end
     end
 
-    context "Setups the rovers" do
+    describe "#set_rover_positions" do
       let(:rover_1) do
         [].tap do |arr|
           arr << '1 2 N'
@@ -60,15 +62,18 @@ describe SquadConsole do
           arr << rover_1
           arr << rover_2
         end
-        data.flatten.reverse
+        data.flatten
       end
 
       it "should create two rovers and locate them in the plateau" do
         squadConsole = SquadConsole.new @input
+
+        # we mock the move so the rovers stay on the initial position
         squadConsole.should_receive(:move_rovers)
 
         squadConsole.explore_mars
         squad = squadConsole.plateau.squad
+
         squad.size.should eq 2
         rover_1 = squad.first
         rover_1.x.should eq 1
@@ -81,12 +86,11 @@ describe SquadConsole do
         rover_2.direction_letter.should eq 'E'
       end
 
-      it "should move the rovers and update their position" do
+      it "should update each rover position" do
         squadConsole = SquadConsole.new @input
         squadConsole.explore_mars
         squad = squadConsole.plateau.squad
 
-        squad.size.should eq 2
         rover_1 = squad.first
         rover_1.x.should eq 1
         rover_1.y.should eq 3
@@ -99,7 +103,7 @@ describe SquadConsole do
       end
 
       context "where the squad in the plateau" do
-        let(:north_rover) { Rover.new "0 0 N"}
+        let(:north_rover) { Rover.new "0 0 N" }
 
         it "has a list of the rovers created" do
           squadConsole = SquadConsole.new @input
@@ -109,10 +113,6 @@ describe SquadConsole do
           squad.first.is_a?(Rover).should be_true
         end
       end
-
-
     end
-
   end
-
 end
