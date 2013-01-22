@@ -1,9 +1,4 @@
 class Rover
-  DIRECTIONS = {  0 => 'N',
-                  1 => 'E',
-                  2 => 'S',
-                  3 => 'W'
-                }
 
   attr_accessor :instructions, :direction, :x, :y
 
@@ -11,7 +6,7 @@ class Rover
     attributes = position.split
     @x = attributes[0].to_i
     @y = attributes[1].to_i
-    set_direction_by_letter attributes[2]
+    @direction = RoverDirection.new attributes[2]
     self.instructions = instructions
   end
 
@@ -21,21 +16,13 @@ class Rover
     end
   end
 
-  def set_direction_by_letter(letter)
-    @direction = DIRECTIONS.key(letter)
-  end
-
-  def direction_letter
-    DIRECTIONS[@direction % 4]
-  end
-
   def change_direction(rotation)
     if rotation == 'L'
-      @direction -= 1
+      @direction.value -= 1
     else
-      @direction += 1
+      @direction.value += 1
     end
-    @direction = @direction % 4
+    @direction.value = @direction.value % 4
   end
 
 private
@@ -48,15 +35,16 @@ private
   end
 
   def move_forward
-    if self.direction == 0
+    if @direction.value == 0
       @y += 1
-    elsif self.direction == 1
+    elsif @direction.value == 1
       @x += 1
-    elsif self.direction == 2
+    elsif @direction.value == 2
       @y -= 1
-    elsif self.direction == 3
+    elsif @direction.value == 3
       @x -= 1
     end
   end
 
 end
+

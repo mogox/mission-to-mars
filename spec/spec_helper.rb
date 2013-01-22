@@ -5,6 +5,7 @@ require 'fuubar'
 require File.expand_path('../../app/plateau', __FILE__)
 require File.expand_path('../../app/rover', __FILE__)
 require File.expand_path('../../app/squad_console', __FILE__)
+require File.expand_path('../../app/rover_direction', __FILE__)
 
 
 RSpec.configure do |config|

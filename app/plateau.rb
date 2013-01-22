@@ -7,8 +7,8 @@ class Plateau
     attributes = input_size.split
     @width = attributes[0].to_i
     @height = attributes[1].to_i
-    raise ArgumentError if @width.zero? || @height.zero?
     @squad = []
+    raise ArgumentError if @width.zero? || @height.zero?
   end
 
   def move_rovers

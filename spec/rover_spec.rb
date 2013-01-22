@@ -7,7 +7,7 @@ describe Rover do
     it "should take an argument with the position and direction" do
       rover.x.should eq 1
       rover.y.should eq 2
-      rover.direction_letter.should eq 'N'
+      rover.direction.cardinal.should eq 'N'
     end
 
     it "should throw an error if no parameters are attached" do
@@ -32,28 +32,28 @@ describe Rover do
       subject{ rover.follow_instructions }
 
       it "should move North when the direction is <N>" do
-        rover.set_direction_by_letter 'N'
+        rover.direction.cardinal = 'N'
         subject
-        rover.y.should eq 3
         rover.x.should eq 1
+        rover.y.should eq 3
       end
 
       it "should move East when the direction is <E>" do
-        rover.set_direction_by_letter 'E'
+        rover.direction.cardinal = 'E'
         subject
         rover.y.should eq 2
         rover.x.should eq 2
       end
 
       it "should move North when the direction is <S>" do
-        rover.set_direction_by_letter 'S'
+        rover.direction.cardinal = 'S'
         subject
         rover.y.should eq 1
         rover.x.should eq 1
       end
 
       it "should move Weast when the direction is <W>" do
-        rover.set_direction_by_letter 'W'
+        rover.direction.cardinal = 'W'
         subject
         rover.y.should eq 2
         rover.x.should eq 0
@@ -69,27 +69,27 @@ describe Rover do
         end
 
         it "should face 'W' when the direction is 'N'" do
-          rover.set_direction_by_letter 'N'
+          rover.direction.cardinal = 'N'
           subject
-          rover.direction_letter.should eq 'W'
+          rover.direction.cardinal.should eq 'W'
         end
 
         it "should face 'E' when the direction is 'S'" do
-          rover.set_direction_by_letter 'S'
+          rover.direction.cardinal = 'S'
           subject
-          rover.direction_letter.should eq 'E'
+          rover.direction.cardinal.should eq 'E'
         end
 
         it "should face 'S' when the direction is 'W'" do
-          rover.set_direction_by_letter 'W'
+          rover.direction.cardinal = 'W'
           subject
-          rover.direction_letter.should eq 'S'
+          rover.direction.cardinal.should eq 'S'
         end
 
         it "should face 'N' when the direction is 'E'" do
-          rover.set_direction_by_letter 'E'
+          rover.direction.cardinal = 'E'
           subject
-          rover.direction_letter.should eq 'N'
+          rover.direction.cardinal.should eq 'N'
         end
       end
 
@@ -99,27 +99,27 @@ describe Rover do
         end
 
         it "should face 'E' when the direction is 'N'" do
-          rover.set_direction_by_letter 'N'
+          rover.direction.cardinal = 'N'
           subject
-          rover.direction_letter.should eq 'E'
+          rover.direction.cardinal.should eq 'E'
         end
 
         it "should face 'W' when the direction is 'S'" do
-          rover.set_direction_by_letter 'S'
+          rover.direction.cardinal = 'S'
           subject
-          rover.direction_letter.should eq 'W'
+          rover.direction.cardinal.should eq 'W'
         end
 
         it "should face 'S' when the direction is 'E' " do
-          rover.set_direction_by_letter 'E'
+          rover.direction.cardinal = 'E'
           subject
-          rover.direction_letter.should eq 'S'
+          rover.direction.cardinal.should eq 'S'
         end
 
         it "should face 'N' when the direction is 'W' " do
-          rover.set_direction_by_letter 'W'
+          rover.direction.cardinal = 'W'
           subject
-          rover.direction_letter.should eq 'N'
+          rover.direction.cardinal.should eq 'N'
         end
       end
     end
