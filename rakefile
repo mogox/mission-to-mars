@@ -1,0 +1,13 @@
+require 'rake'
+require 'rspec/core/rake_task'
+require File.expand_path('../app/mission', __FILE__)
+
+
+RSpec::Core::RakeTask.new(:spec)
+
+task :default => :spec
+
+desc "Start the interactive rover mission"
+task :start_mission do
+  Mission.start
+end

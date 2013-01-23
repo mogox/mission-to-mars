@@ -10,7 +10,7 @@ class SquadConsoleInput
     @input_text = text.reverse || []
   end
 
-  def read
+  def gets
     if @input_text && @input_text.length > 0
       @input_text.pop
     else

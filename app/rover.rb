@@ -35,16 +35,16 @@ private
   end
 
   def move_forward
-    if @direction.value == 0
+    moving_direction = direction.value
+    if moving_direction == 0
       @y += 1
-    elsif @direction.value == 1
+    elsif moving_direction == 1
       @x += 1
-    elsif @direction.value == 2
+    elsif moving_direction == 2
       @y -= 1
-    elsif @direction.value == 3
+    elsif moving_direction == 3
       @x -= 1
     end
   end
-
 end
 

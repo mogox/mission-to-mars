@@ -123,7 +123,5 @@ describe Rover do
         end
       end
     end
-
-
   end
 end
